@@ -1,0 +1,14 @@
+.tablebutton {
+  white-space: nowrap;
+  background-color: #191b39;
+  margin-bottom: 1rem !important;
+  padding: 1px 1px;
+  font: 1px;
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out,
+    border-color 0.1s ease-in-out;
+  font-family: Open Sans, sans-serif;
+  border-color: #2942df;
+  background-color: #595d78;
+  color: white;
+  font-size: smaller;
+}
