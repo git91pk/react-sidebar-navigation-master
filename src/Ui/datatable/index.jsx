@@ -1,6 +1,13 @@
-export function FilterField({value, onChange=()=>{}}){
-  return <input type="text" value={value} onChange={(e) => onChange(e.target.value)}/>
-} 
+export function FilterField({ value, onChange = () => {} }) {
+  return (
+    <input
+      className="border rounded-sm p-2 w-full"
+      type="text"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    />
+  );
+}
 
 export default function DataTable({
   data = [],
@@ -8,7 +15,6 @@ export default function DataTable({
   renderRow = (row) => row,
   renderFilters = () => {},
 }) {
-  const filters = renderFilters();
   const columnKeys = Object.keys(columns);
   return (
     <>
@@ -19,11 +25,13 @@ export default function DataTable({
               <th className="font-bold border-b">{columns[column].label}</th>
             ))}
           </tr>
-          {filters && <tr>{
-            columnsKeys.map(column => (
-              <th>{column.filter && }</th>
-            ))
-          }</tr>}
+          {
+            <tr>
+              {columnKeys.map((column) => (
+                <th>{renderFilters(column)}</th>
+              ))}
+            </tr>
+          }
         </thead>
         <tbody>
           {data.map((row) => (

@@ -17,31 +17,62 @@ async function apiFetch({ url, method, body }) {
   return await response.json();
 }
 
-
 // marktellez
 export default function TagUpdate({}) {
   const [tags, setTags] = useState([]);
   const [filters, setFilters] = useState({
-    id: ""
+    id: "",
+    parentOrg: "",
+    parentRepo: "",
   });
 
   const columns = {
-  id: {
-    label: "User Id",
-    sortable: true,
-    filter: <FilterField value={}/>,
-  },
-  parentOrg: {
-    label: "Parent Org",
-    sortable: true,
-    filter: "string",
-  },
-  parentRepo: {
-    label: "Parent Repo",
-    sortable: true,
-    filter: "string",
-  },
-};
+    id: {
+      label: "User Id",
+      sortable: true,
+      filter: (
+        <FilterField
+          value={filters.id}
+          onChange={(id) =>
+            setFilters((prev) => ({
+              ...prev,
+              id,
+            }))
+          }
+        />
+      ),
+    },
+    parentOrg: {
+      label: "Parent Org",
+      sortable: true,
+      filter: (
+        <FilterField
+          value={filters.parentOrg}
+          onChange={(parentOrg) =>
+            setFilters((prev) => ({
+              ...prev,
+              parentOrg,
+            }))
+          }
+        />
+      ),
+    },
+    parentRepo: {
+      label: "Parent Repo",
+      sortable: true,
+      filter: (
+        <FilterField
+          value={filters.parentRepo}
+          onChange={(parentRepo) =>
+            setFilters((prev) => ({
+              ...prev,
+              parentRepo,
+            }))
+          }
+        />
+      ),
+    },
+  };
 
   useEffect(() => {
     (async () => {
@@ -57,7 +88,11 @@ export default function TagUpdate({}) {
     <div style={{ marginLeft: "auto" }}>
       <h1> Tag Update</h1>
 
-      <DataTable columns={columns} data={tags} renderFilters={} />
+      <DataTable
+        columns={columns}
+        data={tags}
+        renderFilters={(column) => columns[column].filter}
+      />
     </div>
   );
 }
