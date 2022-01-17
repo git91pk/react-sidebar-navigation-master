@@ -1,6 +1,4 @@
-{parentOrg: "b", parentRepo: "b", parentTag: "b", childOrg: "b", childRepo: "b"}
 
-# This is the get response i am getting for datatable
 [
     {
       "childOrg": "magento-commerce", 
