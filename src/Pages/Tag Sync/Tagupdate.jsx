@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import DataTable, { FilterField } from "../../Ui/datatable";
+import DataTable, { FilterField } from "../../ui/datatable";
 
 async function apiFetch({ url, method, body }) {
   const options = {
@@ -76,13 +76,20 @@ export default function TagUpdate({}) {
 
   useEffect(() => {
     (async () => {
-      const json = await apiFetch({
-        url: "http://localhost:5000/get",
-        method: "get",
-      });
-      setTags(json);
+      setTags(require("../../mocks/api.json"));
     })();
   }, []);
+
+  function filter(rows) {
+    return rows.filter((row) =>
+      Object.entries(filters).every(([key, value]) =>
+        row[key]
+          .toString()
+          .toLowerCase()
+          .includes(value.toString().toLowerCase())
+      )
+    );
+  }
 
   return (
     <div style={{ marginLeft: "auto" }}>
@@ -90,7 +97,7 @@ export default function TagUpdate({}) {
 
       <DataTable
         columns={columns}
-        data={tags}
+        data={filter(tags)}
         renderFilters={(column) => columns[column].filter}
       />
     </div>

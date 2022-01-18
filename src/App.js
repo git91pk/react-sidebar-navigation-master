@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import TagSync from "./Pages/Tag Sync/Tagsync";
-import Tagview from "./Pages/Tag Sync/Tagview";
-import Tagupdate from "./Pages/Tag Sync/Tagupdate";
-import Tagcreate from "./Pages/Tag Sync/Tagcreate";
-import Home from "./Pages/Home";
+import TagSync from "./pages/Tag Sync/Tagsync";
+import Tagview from "./pages/Tag Sync/Tagview";
+import Tagupdate from "./pages/Tag Sync/Tagupdate";
+import Tagcreate from "./pages/Tag Sync/Tagcreate";
+import Home from "./pages/Home";
 
 function App() {
   const [inactive, setInactive] = useState(false);
